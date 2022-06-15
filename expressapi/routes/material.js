@@ -1,13 +1,14 @@
 var express = require('express');
+const db = require('../util/db');
 var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  var mysql      = require('mysql');
+ /* var mysql      = require('mysql');
   var connection = mysql.createConnection({
     host     : 'localhost',
-    user     : 'express',
-    password : '1qaz2wsx#EDC'
+    user     : 'root',
+    password : ''
   });
 
   connection.connect();
@@ -18,7 +19,15 @@ router.get('/', function(req, res, next) {
     res.json(rows);
   });
 
-  connection.end();
+  connection.end();*/
+  db.execute("SELECT 1 + 1 AS solution")
+  .then(data=>{
+    debugger
+    res.json(data[0]);
+  }).
+  catch((err)=>{
+    console.log(err);
+  });
 });
 
 module.exports = router;
